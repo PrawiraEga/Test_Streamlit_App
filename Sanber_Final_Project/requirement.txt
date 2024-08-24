@@ -1,0 +1,11 @@
+requests
+beautifulsoup4
+pandas
+spacy
+vaderSentiment
+nltk
+matplotlib
+seaborn
+wordcloud
+torch
+transformers
