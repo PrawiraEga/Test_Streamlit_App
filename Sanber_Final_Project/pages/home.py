@@ -1,5 +1,4 @@
 import streamlit as st
-import subprocess
 # import pandas as pd
 # from data import data_scraping
 from pages import analysis
@@ -22,15 +21,6 @@ def app():
     The news sources are taken from the portals cryptopotato and cryptorank.
     """
     )
-
-    # CMD SpaCy download
-    command = "python -m spacy download en_core_web_sm"
-    # Run CMD through subprocess
-    try:
-        subprocess.run(command, check=True, shell=True)
-        print("Model 'en_core_web_sm' download succesfull.")
-    except subprocess.CalledProcessError as e:
-        print(f"Error while downloading: {e}")
 
     st.page_link("pages/analysis.py", label=" Start Analysis", icon="🌎")
     # st.button("Show News", type="primary", on_click=analysis.app())
