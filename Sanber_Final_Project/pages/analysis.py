@@ -3,13 +3,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+import nltk
 from data import data_scraping
 from process import text_cleaning, vader_senti
+from nltk_download import download_nltk_pkg
 
 def app():
     st.title("Analysis Page")
     st.write("Here Is Analysis Page of The Scraped News")
-    
+    download_nltk_pkg()
     # txt_list = data_scraping.get_data_scrap()
     # next_txt_list = data_scraping.get_data_scrap_two()
     # all_txt_list = txt_list + next_txt_list
