@@ -1,8 +1,8 @@
 requests==2.32.3
 beautifulsoup4==4.12.3
 pandas==2.2.2
-spacy==3.7.3
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.3/en_core_web_sm-3.7.3-py3-none-any.whl
+spacy==3.7.1
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
 vaderSentiment==3.3.2
 nltk==3.9.1
 matplotlib==3.9.2
