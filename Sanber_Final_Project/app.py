@@ -1,15 +1,6 @@
 import streamlit as st
 import subprocess
 
-# CMD SpaCy download
-command = "python -m spacy download en_core_web_sm"
-    # Run CMD through subprocess
-try:
-    subprocess.run(command, check=True, shell=True)
-    print("Model 'en_core_web_sm' download succesfull.")
-except subprocess.CalledProcessError as e:
-    print(f"Error while downloading: {e}")
-
 st.set_page_config(page_title="Sentiment Analysis Data App", page_icon="📊", layout="centered")
 
 # Sidebar navigation
