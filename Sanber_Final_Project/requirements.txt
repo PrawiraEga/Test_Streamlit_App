@@ -7,5 +7,4 @@ nltk
 matplotlib
 seaborn
 wordcloud
-torch
-transformers
+streamlit
