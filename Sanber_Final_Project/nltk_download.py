@@ -1,12 +1,12 @@
 import nltk
 
 def download_nltk_pkg():
-    packages = ['popular'
-            ,'punkt'
+    packages = ['punkt'
+            ,'punkt_tab'    
             ,'averaged_perceptron_tagger'
+            ,'averaged_perceptron_tagger_eng'
             ,'wordnet'
             ,'sentiwordnet'
-            ,'opinion_lexicon'
             ]
 
     #Download Packages
