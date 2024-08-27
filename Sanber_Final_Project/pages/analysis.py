@@ -11,58 +11,52 @@ from nltk_download import download_nltk_pkg
 def app():
     st.title("Analysis Page")
     st.write("Here Is Analysis Page of The Scraped News")
-    download_nltk_pkg()
-    # txt_list = data_scraping.get_data_scrap()
-    # next_txt_list = data_scraping.get_data_scrap_two()
-    # all_txt_list = txt_list + next_txt_list
 
     on = st.toggle("Show Data")
 
+    df = pd.DataFrame()
+    sum_df = pd.DataFrame()
+
     if on:
         # st.write("Show News!")
-       list_item = data_scraping.get_data_scrap_two()
-       df = pd.DataFrame(list_item, columns=['Berita'])
-       df_clean = df.copy()  
-    #    st.write("### DataFrame")
-    #    st.dataframe(df) 
-    #    if st.button("Show Data"):
-          
-        # Do Text Cleaning
-       df_clean['Berita_Clean'] = df['Berita'].apply(text_cleaning.clean_text_spacy)
+       list_txt =  data_scraping.get_all_items()
+       df = pd.DataFrame(list_txt, columns=['Berita'])
        
-        # Set Sentiment
-       df_clean['Sentimen'] = df_clean['Berita_Clean'].apply(vader_senti.set_vader)
-
-         # Tampilkan DataFrame
-       st.write("### DataFrame")
-       st.dataframe(df)
+       # Tampilkan DataFrame
+       st.write("### Latest News DataFrame")
+       editable_df = st.data_editor(df, width=1000, num_rows="dynamic")
+       st.session_state.df_st = editable_df
+       st.write(
+       """
+       Users can add additional news by clicking the add icon at the top right of the table.
+       """
+       )
+      
        
-       if st.button("Show Distribution"):
-              # Drop Kolom Berita Clean
-            df_clean.drop(columns=['Berita_Clean'], inplace=True)
-          # Plot Sentiment
+       # Add Sentiment
+    if st.button("Show Sentiment"): 
+       data_df = dataframe_process.process_df(editable_df)
+       sum_df = data_df["df"]
 
-        # Membuat histogram dari kolom 'Sentimen'
-            fig, ax = plt.subplots()
-            ax.hist(df_clean['Sentimen'], bins=5, color='skyblue', edgecolor='black')
-            ax.set_xlabel('Sentimen_Label')
-            ax.set_ylabel('Frequency')
-            ax.set_title('Sentiment Distribution')
+       st.session_state.df_sum = data_df["df"]
+     
+       st.write("### News With Sentiment")
+       st.write(
+       """
+       The first sentiment analysis uses the Vader Sentiment model. For the second sentiment analysis, SentiWordNet is utilized. 
+       The final outcome is achieved by combining the sentiment labels provided by each model.
+       """
+       )
+       st.dataframe(sum_df)
 
-            # Tampilkan plot di Streamlit
-            st.write("### Sentiment Distribution Histogram")
-            st.pyplot(fig)
-            df = pd.DataFrame()
-    #     list_item = get_data_scrap_two()
-    #     df = pd.DataFrame(list_item, columns=['Berita'])
-    # Load dataset
-    # df = pd.read_csv('data/sample_data.csv')
-    # df = data_scraping.get_data_scrap()
-    
-    # Tampilkan DataFrame
-    # st.write("### DataFrame")
-    # st.dataframe(df_scrap)
+    if st.button("Show Sentiment Distribution"):
+        sum_df = st.session_state.df_sum
+        st.write("### News With Sentiment")
+        st.dataframe(sum_df)
 
-    
+        st.write("### Sentiment Distribution")
+        visualization.senti_plot(sum_df)
+      
+app()
 
 
