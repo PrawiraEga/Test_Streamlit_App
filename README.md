@@ -8,7 +8,7 @@ This project focuses on analyzing the sentiment of news articles related to cryp
 - [Features](#features)
 - [Data](#data)
 - [Installation](#installation)
-- 
+  
 ## Introduction
 
 Cryptocurrency markets are highly volatile and sensitive to news and events. Analyzing the sentiment of news articles can provide valuable insights into market behavior and help in making informed decisions. This project uses natural language processing (NLP) techniques to classify the sentiment of cryptocurrency-related news articles.
