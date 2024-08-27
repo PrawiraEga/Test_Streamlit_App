@@ -3,10 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from data import data_scraping, visualization
+from process import text_cleaning, vader_senti, sentiword, convert_senti, dataframe_process
 import nltk
-from data import data_scraping
-from process import text_cleaning, vader_senti
-from nltk_download import download_nltk_pkg
 
 def app():
     st.title("Analysis Page")
