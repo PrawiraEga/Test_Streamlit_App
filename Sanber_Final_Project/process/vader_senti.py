@@ -5,17 +5,9 @@ def set_vader(txt):
     # Inisialisasi analyzer
     analyzer = SentimentIntensityAnalyzer()
 
-    # print("=== VADER ===")
-    # print(txt)
-
-    # start_time = time.time()
     # Mendapatkan hasil sentimen
     sentiment = analyzer.polarity_scores(txt)
     sentiment_comp = sentiment.get('compound')
-
-    #durasi
-    # process_time = calculate_process_time(start_time)
-    # print("Process time:", process_time)
 
     if sentiment_comp >= 0.05:
         sentiment_label = 'POSITIVE'
