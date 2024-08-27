@@ -53,5 +53,3 @@ To run this project locally, you will need Python 3.x and the following dependen
 You can install the dependencies using pip:
 
 pip install -r requirements.txt
-
-## Usage 
