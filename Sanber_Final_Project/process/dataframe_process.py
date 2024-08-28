@@ -6,6 +6,8 @@ df = pd.DataFrame()
 df_stg = pd.DataFrame()
 
 def process_df(pd_df):
+    # list_item = data_scraping.get_all_items()
+    # df = pd.DataFrame(list_item, columns=['Berita'])
     df = pd_df
     df_stg = df.copy()
        
@@ -42,13 +44,6 @@ def process_df(pd_df):
 
     return df_dict
 
-def sum_senti_df(df):
-    df_sum = df.groupby(['Sentimen_Sum']).count()
-    
-    if 'Sentimen_One' in df_sum.columns:
-        df.drop(columns=['Sentimen_One'], inplace=True)
-       
-    if 'Sentimen_Two' in df_sum.columns:
-        df.drop(columns=['Sentimen_Two'], inplace=True)
-    
+def sum_senti_df(df, col):
+    df_sum = df[col].value_counts()
     return df_sum
