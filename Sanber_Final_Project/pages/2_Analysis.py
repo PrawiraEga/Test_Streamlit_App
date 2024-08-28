@@ -7,6 +7,9 @@ from data import data_scraping, visualization
 from process import text_cleaning, vader_senti, sentiword, convert_senti, dataframe_process
 import nltk
 
+
+
+
 def app():
     st.title("Analysis Page")
     st.write("Here Is Analysis Page of The Scraped News")
@@ -34,7 +37,7 @@ def app():
        
        # Add Sentiment
     if st.button("Show Sentiment"): 
-       data_df = dataframe_process.process_df(editable_df)
+       data_df = dataframe_process.process_df(st.session_state.df_st)
        sum_df = data_df["df"]
 
        st.session_state.df_sum = data_df["df"]
@@ -46,16 +49,28 @@ def app():
        The final outcome is achieved by combining the sentiment labels provided by each model.
        """
        )
-       st.dataframe(sum_df)
+       st.dataframe(sum_df, width=1000)
 
     if st.button("Show Sentiment Distribution"):
-        sum_df = st.session_state.df_sum
-        st.write("### News With Sentiment")
-        st.dataframe(sum_df)
-
         st.write("### Sentiment Distribution")
-        visualization.senti_plot(sum_df)
+        sum_df = st.session_state.df_sum
+        g1, g2, g3 = st.columns((1,1,1))
+        # st.write("### Sentiment Only")
+        df_sen_one = dataframe_process.sum_senti_df(sum_df,'Sentimen_One')
+        df_sen_two = dataframe_process.sum_senti_df(sum_df,'Sentimen_Two')
+        df_sen_sum = dataframe_process.sum_senti_df(sum_df,'Sentimen_Sum')
+
+        fig1 = visualization.plotly_chart(df_sen_one, 'Sentimen_One')
+        g1.plotly_chart(fig1)
+
+        fig2 = visualization.plotly_chart(df_sen_two, 'Sentimen_Two')
+        g2.plotly_chart(fig2)
+
+        fig3 = visualization.plotly_chart(df_sen_sum, 'Sentimen_Sum')
+        g3.plotly_chart(fig3)
       
 app()
+
+    
 
 
