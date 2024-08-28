@@ -26,6 +26,6 @@ def app():
     )
 
     if st.button("Start!"):
-        st.switch_page("pages/analysis.py")
+        st.switch_page("pages/2_Analysis.py")
 
 app()
