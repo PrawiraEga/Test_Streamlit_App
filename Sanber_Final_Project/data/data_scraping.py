@@ -18,6 +18,7 @@ items_one = []
 items_two = []
 items_tri = []
 items_four = []
+items_five = []
 
 df = pd.DataFrame()
 
@@ -136,11 +137,39 @@ def data_scrap_four():
 
     return list_txt_post
 
+def data_scrap_five():
+    url = "https://www.investing.com/news/cryptocurrency-news"
+
+    #requests
+    response_page = requests.get(url)
+    response = response_page.content
+
+    #masukkan response ke dalam obyek beautifulsoup
+    soup_obj = BeautifulSoup(response, "html.parser")
+
+    body_tag = soup_obj.find("body")
+    next_tag = body_tag.find("div", {"id":"__next"})
+    relative_tag = next_tag.find("div", {"class":"relative flex"})
+    news_container = relative_tag.find("div", {"data-test":"news-container"})
+    news_list = news_container.find_all("li", {"class":"list_list__item__dwS6E !mt-0 border-t border-solid border-[#E6E9EB] py-6"})
+
+    list_txt_post = []
+
+    for row in news_list:
+      post = row.find("article", {"class":"news-analysis-v2_article__wW0pT flex w-full sm:flex-row-reverse md:flex-row"})
+      post = row.find("div", {"class":"news-analysis-v2_content__z0iLP w-full text-xs sm:flex-1"})
+      post = row.find("p", {"data-test":"article-description"})
+      quote_text = post.get_text()
+      list_txt_post.append(quote_text)
+
+      return list_txt_post
+
 def get_all_items():
     items_one = data_scrap_one()
     items_two = data_scrap_two()
     items_tri = data_scrap_tri()
     items_four = data_scrap_four()
-    list_item = items_one+items_two+items_tri+items_four
+    items_five = data_scrap_five()    
+    list_item = items_one + items_two + items_tri + items_four + items_five
     
     return list_item
