@@ -24,7 +24,7 @@ df = pd.DataFrame()
 
 def data_scrap_one():
 
-    time.sleep(0.75)
+    time.sleep(0.5)
     url = "https://cryptorank.io/news"
     # df = pd.DataFrame()
 
