@@ -14,7 +14,7 @@ def senti_plot(df):
     st.pyplot(fig)
 
 def plotly_chart(df, col):
-    random_int = random.randint(100000, 270000)
+    random_int = random.randint(100000, 999999)
     fig = px.bar(df, y = 'count', template = 'seaborn')
     fig.update_traces(marker_color='#'+str(random_int))
     fig.update_layout(title_text="Number of " + col,title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title="Total", xaxis_title="Sentimen")
