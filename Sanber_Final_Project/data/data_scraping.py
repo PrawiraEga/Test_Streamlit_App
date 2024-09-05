@@ -162,7 +162,7 @@ def data_scrap_five():
       quote_text = post.get_text()
       list_txt_post.append(quote_text)
 
-      return list_txt_post
+    return list_txt_post
 
 def get_all_items():
     items_one = data_scrap_one()
