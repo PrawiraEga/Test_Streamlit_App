@@ -1,6 +1,6 @@
 import pandas as pd
 from data import data_scraping
-from process import text_cleaning, vader_senti, sentiword, convert_senti
+from process import text_cleaning, vader_senti, sentiword, lexicon_senti, convert_senti
 
 df = pd.DataFrame()
 df_stg = pd.DataFrame()
