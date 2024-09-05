@@ -7,6 +7,7 @@ def download_nltk_pkg():
             ,'averaged_perceptron_tagger_eng'
             ,'wordnet'
             ,'sentiwordnet'
+            ,'opinion_lexicon'
             ]
 
     #Download Packages
