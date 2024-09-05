@@ -54,10 +54,12 @@ def app():
     if st.button("Show Sentiment Distribution"):
         st.write("### Sentiment Distribution")
         sum_df = st.session_state.df_sum
-        g1, g2, g3 = st.columns((1,1,1))
+        g1, g2 = st.columns((1,1))
+        g3, g4 = st.columns((1,1))
         # st.write("### Sentiment Only")
         df_sen_one = dataframe_process.sum_senti_df(sum_df,'Sentimen_One')
         df_sen_two = dataframe_process.sum_senti_df(sum_df,'Sentimen_Two')
+        df_sen_tri = dataframe_process.sum_senti_df(sum_df,'Sentimen_Tri')
         df_sen_sum = dataframe_process.sum_senti_df(sum_df,'Sentimen_Sum')
 
         fig1 = visualization.plotly_chart(df_sen_one, 'Sentimen_One')
@@ -66,8 +68,11 @@ def app():
         fig2 = visualization.plotly_chart(df_sen_two, 'Sentimen_Two')
         g2.plotly_chart(fig2)
 
-        fig3 = visualization.plotly_chart(df_sen_sum, 'Sentimen_Sum')
+        fig3 = visualization.plotly_chart(df_sen_tri, 'Sentimen_Tri')
         g3.plotly_chart(fig3)
+
+        fig4 = visualization.plotly_chart(df_sen_sum, 'Sentimen_Sum')
+        g4.plotly_chart(fig4)
       
 app()
 
